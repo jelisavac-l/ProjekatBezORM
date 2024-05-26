@@ -49,17 +49,17 @@ public class Kompanija implements Entity{
     }
 
     @Override
-    public int insert(Entity e) throws SQLException {
+    public int insert() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public int update(Entity oldEnt, Entity newEnt) throws SQLException {
+    public int update(Entity newEnt) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public int delete(Entity e) throws SQLException {
+    public int delete() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -67,6 +67,7 @@ public class Kompanija implements Entity{
     public List<Entity> select() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
     
     
 }
