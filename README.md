@@ -1,7 +1,6 @@
 
 # Prakse
 Sistem za praćenje praksi studenata FON-a (JDBC verzija)
-> Ko je rekao da je jdbc lakši od orm-a, taj ti dobro ne želi.
 
 
 
