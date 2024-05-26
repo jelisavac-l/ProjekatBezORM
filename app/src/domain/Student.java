@@ -1,6 +1,9 @@
 package domain;
 
-public class Student {
+import java.sql.SQLException;
+import java.util.List;
+
+public class Student implements Entity{
     private Long id;
     private String ime;
     private String prezime;
@@ -115,6 +118,26 @@ public class Student {
 
     public void setModul(Modul modul) {
         this.modul = modul;
+    }
+
+    @Override
+    public int insert(Entity e) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int update(Entity oldEnt, Entity newEnt) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int delete(Entity e) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Entity> select() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
 }

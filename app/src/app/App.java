@@ -1,12 +1,16 @@
 package app;
 
+import java.sql.*;
+import broker.DatabaseConnection;
 import com.formdev.flatlaf.FlatLightLaf;
-import designs.Main1;
+import designs.Display;
 
 /**
  * 
  * @author Jelisavac, L.
  * @author Mijailovic, M.
+ * @since 2024.
+ * @see github.com/jelisavac-l/ProjekatBezORM
  * 
  */
 
@@ -16,13 +20,15 @@ public class App {
     public static void jezdimirovoTestiranjeGUIa()
     {
         FlatLightLaf.setup();
-        Main1 centrirana = new Main1();
+        Display centrirana = new Display();
         centrirana.setLocationRelativeTo(null);
         centrirana.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+
         jezdimirovoTestiranjeGUIa();
+        
     }
     
 }

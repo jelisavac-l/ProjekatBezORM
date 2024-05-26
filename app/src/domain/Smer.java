@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domain;
 
-/**
- *
- * @author ASTVRIAS
- */
-class Smer {
+import java.sql.SQLException;
+import java.util.List;
+
+class Smer implements Entity{
     private Long id;
     private String naziv;
 
@@ -32,5 +27,26 @@ class Smer {
     public void setNaziv(String naziv) {
         this.naziv = naziv;
     }
+
+    @Override
+    public int insert(Entity e) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int update(Entity oldEnt, Entity newEnt) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public int delete(Entity e) throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Entity> select() throws SQLException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     
 }

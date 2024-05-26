@@ -76,13 +76,11 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="pnlInfo" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Component id="jPanel1" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="pnlInfo" max="32767" attributes="0"/>
+                  <Component id="jPanel1" max="32767" attributes="0"/>
               </Group>
-              <Component id="jScrollPane1" pref="450" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="413" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -103,11 +101,11 @@
                 <Column editable="false" title="Ime" type="java.lang.Object"/>
                 <Column editable="false" title="Prezime" type="java.lang.Object"/>
                 <Column editable="false" title="Br. indeksa" type="java.lang.Object"/>
+                <Column editable="false" title="Modul" type="java.lang.Object"/>
                 <Column editable="false" title="Stepen Studija" type="java.lang.Object"/>
                 <Column editable="false" title="Godina Studija" type="java.lang.Object"/>
                 <Column editable="false" title="Praksa" type="java.lang.Object"/>
                 <Column editable="false" title="Delatnost" type="java.lang.Object"/>
-                <Column editable="false" title="Na poziciji" type="java.lang.Object"/>
                 <Column editable="false" title="Datum od" type="java.lang.Object"/>
                 <Column editable="false" title="Datum do" type="java.lang.Object"/>
               </Table>
@@ -130,41 +128,47 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="tfNdx" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfIme" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="tfStepenStudija" min="-2" pref="72" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="tfGodinaStudija" pref="224" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="tfNdx" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="tfIme" alignment="0" min="-2" pref="220" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="tfStepenStudija" min="-2" pref="72" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="tfGodinaStudija" pref="224" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="tfTelefon" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tfEmail" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tfPrezime" alignment="0" max="32767" attributes="0"/>
+                          <Component id="tfBudzet" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="tfTelefon" alignment="0" max="32767" attributes="0"/>
-                      <Component id="tfEmail" alignment="0" max="32767" attributes="0"/>
-                      <Component id="tfPrezime" alignment="0" max="32767" attributes="0"/>
-                      <Component id="tfBudzet" alignment="0" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="tfSmer" min="-2" pref="72" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="tfModul" pref="224" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jSeparator3" min="-2" pref="9" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="tfPIB" min="-2" max="-2" attributes="0"/>
                       <Component id="tfNazivKompanije" alignment="0" max="32767" attributes="0"/>
-                      <Component id="tfDelatnost" alignment="0" min="-2" pref="302" max="-2" attributes="0"/>
+                      <Component id="tfDelatnost" alignment="0" pref="302" max="32767" attributes="0"/>
+                      <Component id="jButton5" max="32767" attributes="0"/>
                   </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jSeparator2" min="-2" pref="3" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="taKomentar" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
                           <Component id="tfDatumOd" min="-2" pref="149" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="tfDatumDo" min="-2" pref="149" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jTextField1" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -173,52 +177,53 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jSeparator2" max="32767" attributes="0"/>
+                      <Component id="jSeparator3" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfIme" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfPrezime" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfNdx" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfEmail" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfTelefon" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="tfGodinaStudija" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="tfStepenStudija" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="tfNazivKompanije" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfPIB" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="tfDelatnost" min="-2" pref="54" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tfBudzet" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfIme" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfPrezime" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfNdx" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfEmail" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfTelefon" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="tfDatumDo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="tfDatumOd" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfGodinaStudija" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="tfStepenStudija" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="taKomentar" min="-2" pref="155" max="-2" attributes="0"/>
                               </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="tfNazivKompanije" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfPIB" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="tfDelatnost" min="-2" pref="54" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="tfBudzet" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tfModul" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfSmer" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jSeparator3" alignment="1" max="32767" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="tfDatumDo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="tfDatumOd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="taKomentar" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -327,15 +332,29 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="taKomentarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" value="Pozicija na kojoj je student imao praksu"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator3">
           <Properties>
             <Property name="orientation" type="int" value="1"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfSmer">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" value="Smer"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfSmerActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="tfModul">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="text" type="java.lang.String" value="Modul"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton5">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Otvori ugovor"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -352,20 +371,9 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jButton1" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton2" min="-2" pref="110" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jButton3" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton4" min="-2" pref="110" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="btnLoad" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -374,40 +382,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton1" pref="98" max="32767" attributes="0"/>
-                      <Component id="jButton2" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton4" max="32767" attributes="0"/>
-                      <Component id="jButton3" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="btnLoad" min="-2" pref="79" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btnLoad">
           <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
+            <Property name="text" type="java.lang.String" value="LOAD (EXPERIMENTAL)"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jButton2"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jButton1"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jButton4">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jButton2"/>
-          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoadActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
