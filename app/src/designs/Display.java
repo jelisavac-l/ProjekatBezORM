@@ -364,6 +364,7 @@ public class Display extends javax.swing.JFrame {
         
         TableModel tm = tblSvasta.getModel();
         DefaultTableModel dtm = (DefaultTableModel) tm;
+        dtm.setRowCount(0);
         for(Praksa p : LocalData.prakse)
         {
             
