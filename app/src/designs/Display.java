@@ -6,6 +6,20 @@ package designs;
 
 import java.sql.*;
 import broker.DatabaseConnection;
+import domain.APR;
+import domain.Entity;
+import domain.Kompanija;
+import domain.Modul;
+import domain.Praksa;
+import domain.Smer;
+import domain.Student;
+import domain.Ugovor;
+import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import repos.LocalData;
 
 /**
  *
@@ -30,7 +44,7 @@ public class Display extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblSvasta = new javax.swing.JTable();
         pnlInfo = new javax.swing.JPanel();
         tfIme = new javax.swing.JTextField();
         tfPrezime = new javax.swing.JTextField();
@@ -64,23 +78,23 @@ public class Display extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblSvasta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Ime", "Prezime", "Br. indeksa", "Modul", "Stepen Studija", "Godina Studija", "Praksa", "Delatnost", "Datum od", "Datum do"
+                "Ime", "Prezime", "Br. indeksa", "Modul", "Godina", "Praksa", "Delatnost", "Datum od", "Datum do"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblSvasta);
 
         pnlInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacije o Studentu i Kompaniji"));
 
@@ -342,8 +356,131 @@ public class Display extends javax.swing.JFrame {
     }//GEN-LAST:event_tfSmerActionPerformed
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
-                
+        try {
+            getSvastaFromDB(); 
+        } catch (SQLException ex) {
+            Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        TableModel tm = tblSvasta.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) tm;
+        for(Praksa p : LocalData.prakse)
+        {
+            
+            // Koliko je opustajuce pisati ovo nakon sve fizikalije...
+            Object[] row = new Object[]{
+                p.getStudent().getIme(),
+                p.getStudent().getPrezime(),
+                p.getStudent().getIndeks(),
+                p.getStudent().getModul().getNaziv(),
+                p.getStudent().getGodinaStudija(),
+                p.getKompanija().getNaziv(),
+                p.getKompanija().getDelatnost().getNazivDelatnosti(),
+                p.getDatumPocetka(),
+                p.getDatumZavrsetka()
+            };
+            
+            dtm.addRow(row);
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_btnLoadActionPerformed
+
+    /**
+     * Patnja velika je bila smisliti ovo a jos veca napisati.
+     * @throws SQLException 
+     */
+    private void getSvastaFromDB() throws SQLException {
+        APR ap;
+        Kompanija ko;
+        Smer sm;
+        Modul md;
+        Student su;
+        Praksa pr;
+        
+        String sql = "SELECT\n" +
+                "s.PKStudenta,\n" +
+                "s.ime,\n" +
+                "s.prezime,\n" +
+                "s.brojIndeksa,\n" +
+                "s.email,\n" +
+                "s.telefon, \n" +
+                "s.stepenStudija,\n" +
+                "s.godinaStudija,\n" +
+                "s.budzet,\n" +
+                "sm.PKSmera,\n" +
+                "sm.Naziv as 'nazivSmera',\n" +
+                "m.PKModula,\n" +
+                "m.naziv as 'nazivModula',\n" +
+                "k.PKKompanije,\n" +
+                "k.naziv as 'nazivKompanije',\n" +
+                "k.PIB,\n" +
+                "a.PKDelatnosti,\n" +
+                "a.sifraDelatnosti,\n" +
+                "a.naziv as 'nazivDelatnosti',\n" +
+                "p.PKPrakse,\n" +
+                "p.komentar,\n" +
+                "p.datumPocetka, \n" +
+                "p.datumZavrsetka\n" +
+                "FROM Praksa p\n" +
+                "JOIN Kompanija k ON p.FKKompanije = k.PKKompanije\n" +
+                "JOIN Student s ON p.FKStudenta = s.PKStudenta \n" +
+                "JOIN Smer sm ON s.FKSmera = sm.PKSmera \n" +
+                "JOIN Modul m  ON s.FKModula = m.PKModula\n" +
+                "JOIN APR a ON k.FKDelatnosti = a.PKDelatnosti ";
+        Connection con = DatabaseConnection.getInstance();
+        Statement st = con.createStatement();
+        ResultSet rs = st.executeQuery(sql);
+        while(rs.next())
+        {
+            ap = new APR(rs.getLong("PKDelatnosti"),
+                    rs.getString("nazivDelatnosti"),
+                    rs.getInt("sifraDelatnosti"));
+            
+            ko = new Kompanija(rs.getLong("PKKompanije"),
+                    rs.getString("nazivKompanije"),
+                    rs.getLong("PIB"),
+                    ap);
+            
+            sm = new Smer(rs.getLong("PKSmera"),
+                    rs.getString("nazivSmera"));
+            
+            md = new Modul(rs.getLong("PKModula"),
+                    rs.getString("nazivModula"),
+                    sm);
+            
+            su = new Student(rs.getLong("PKStudenta"),
+                    rs.getString("ime"),
+                    rs.getString("prezime"),
+                    rs.getString("brojIndeksa"),
+                    rs.getString("email"),
+                    rs.getString("telefon"),
+                    rs.getInt("stepenStudija"),
+                    rs.getInt("godinaStudija"),
+                    rs.getBoolean("budzet"),
+                    sm,
+                    md);
+            
+            pr = new Praksa(rs.getLong("PKPrakse"),
+                    ko,
+                    su,
+                    rs.getDate("datumPocetka"),
+                    rs.getDate("datumZavrsetka"),
+                    rs.getString("komentar"));
+            
+            LocalData.add(ap);
+            LocalData.add(ko);
+            LocalData.add(sm);
+            LocalData.add(md);
+            LocalData.add(su);
+            LocalData.add(pr);
+        }
+        rs.close();
+        st.close();
+        con.close();
+    }
 
     /**
      * @param args the command line arguments
@@ -391,11 +528,11 @@ public class Display extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JMenuItem miExport;
     private javax.swing.JMenuItem miImport;
     private javax.swing.JPanel pnlInfo;
     private javax.swing.JTextField taKomentar;
+    private javax.swing.JTable tblSvasta;
     private javax.swing.JTextField tfBudzet;
     private javax.swing.JTextField tfDatumDo;
     private javax.swing.JTextField tfDatumOd;

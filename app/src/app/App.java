@@ -5,6 +5,7 @@ import broker.DatabaseConnection;
 import com.formdev.flatlaf.FlatLightLaf;
 import designs.Display;
 
+
 /**
  * 
  * @author Jelisavac, L.
@@ -28,7 +29,7 @@ public class App {
     public static void main(String[] args) throws SQLException {
 
         jezdimirovoTestiranjeGUIa();
-        
+            
     }
     
 }

@@ -3,7 +3,7 @@ package domain;
 import java.sql.SQLException;
 import java.util.List;
 
-class Modul implements Entity{
+public class Modul implements Entity{
     private Long id;
     private String naziv;
     private Smer smer;
