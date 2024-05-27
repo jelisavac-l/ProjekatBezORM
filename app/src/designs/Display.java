@@ -19,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import repos.LocalData;
 
@@ -85,7 +86,7 @@ public class Display extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Ime", "Prezime", "Br. indeksa", "Modul", "Godina", "Praksa", "Delatnost", "Datum od", "Datum do"
+                "BP", "Ime", "Prezime", "Br. indeksa", "Modul", "Praksa", "Delatnost", "Datum od", "Datum do"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -94,6 +95,17 @@ public class Display extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        // Jako je dobro sto sam se setio ovoga :D
+        TableColumnModel tcm = tblSvasta.getColumnModel();
+        tcm.getColumn(0).setPreferredWidth(10);
+        tcm.getColumn(3).setPreferredWidth(20);
+        tcm.getColumn(7).setPreferredWidth(30);
+        tcm.getColumn(8).setPreferredWidth(30);
+        tblSvasta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSvastaMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(tblSvasta);
@@ -285,7 +297,7 @@ public class Display extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Kontrole"));
 
-        btnLoad.setText("LOAD (EXPERIMENTAL)");
+        btnLoad.setText("Učitaj podatke");
         btnLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoadActionPerformed(evt);
@@ -400,11 +412,12 @@ public class Display extends javax.swing.JFrame {
             
             // Koliko je opustajuce pisati ovo nakon sve fizikalije...
             Object[] row = new Object[]{
+                p.getId(),
                 p.getStudent().getIme(),
                 p.getStudent().getPrezime(),
                 p.getStudent().getIndeks(),
                 p.getStudent().getModul().getNaziv(),
-                p.getStudent().getGodinaStudija(),
+                
                 p.getKompanija().getNaziv(),
                 p.getKompanija().getDelatnost().getNazivDelatnosti(),
                 p.getDatumPocetka(),
@@ -425,6 +438,16 @@ public class Display extends javax.swing.JFrame {
         sd.setVisible(true);
         sd.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenu3MenuSelected
+
+    private void tblSvastaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSvastaMouseClicked
+        Praksa p;
+        Student s;
+        Kompanija k;
+        int row = tblSvasta.getSelectedRow();
+        
+        
+        
+    }//GEN-LAST:event_tblSvastaMouseClicked
 
     /**
      * Patnja velika je bila smisliti ovo a jos veca napisati.

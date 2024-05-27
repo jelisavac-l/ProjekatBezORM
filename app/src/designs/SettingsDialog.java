@@ -52,7 +52,7 @@ public class SettingsDialog extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Settings");
 
-        jLabel1.setText("Odaberite temu :D");
+        jLabel1.setText("Odaberite temu :D (Restart obavezan)");
 
         cbTema.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Svetla tema (najbolja)", "Tamna tema", "Svetla tema (macOS)", "Tamna tema (macOS)", "Ružna tema (defaultna)" }));
         cbTema.addActionListener(new java.awt.event.ActionListener() {
