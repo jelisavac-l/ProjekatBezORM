@@ -4,6 +4,10 @@ import java.sql.*;
 import broker.DatabaseConnection;
 import com.formdev.flatlaf.FlatLightLaf;
 import designs.Display;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import util.AbelException;
 
 
 /**
@@ -28,8 +32,16 @@ public class App {
 
     public static void main(String[] args) throws SQLException {
 
-        jezdimirovoTestiranjeGUIa();
-            
+        try {
+            Init.start();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AbelException ex) {
+            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Display centrirana = new Display();
+        centrirana.setLocationRelativeTo(null);
+        centrirana.setVisible(true);
     }
     
 }
