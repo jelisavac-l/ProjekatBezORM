@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import util.AbelException;
+import util.Util;
 
 
 
@@ -44,6 +45,7 @@ public class App {
         centrirana.setLocationRelativeTo(null);
         centrirana.setVisible(true);
 
+        
     }
     
 }
