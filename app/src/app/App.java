@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import util.AbelException;
 
 
+
 /**
  * 
  * @author Jelisavac, L.
@@ -42,6 +43,7 @@ public class App {
         Display centrirana = new Display();
         centrirana.setLocationRelativeTo(null);
         centrirana.setVisible(true);
+
     }
     
 }

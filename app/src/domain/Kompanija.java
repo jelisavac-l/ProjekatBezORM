@@ -1,7 +1,9 @@
 package domain;
 
+import broker.DatabaseConnection;
 import java.sql.SQLException;
 import java.util.List;
+import java.sql.*;
 
 public class Kompanija implements Entity{
     private Long id;
@@ -49,24 +51,62 @@ public class Kompanija implements Entity{
     }
 
     @Override
-    public int insert(Entity e) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int insert() throws SQLException {
+        Connection con = DatabaseConnection.getInstance();
+        try {
+            String sql="INSERT INTO kompanija(PKKompanije,naziv,PIB,FKDelatnosti) VALUES(?,?,?,?)";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setLong(1, this.getId());
+            st.setString(2, this.getNaziv());
+            st.setLong(3, this.getPIB());
+            st.setLong(4, this.getDelatnost().getId());
+            st.executeUpdate();
+            st.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Podaci se ne mogu dodati.");
+            return 0;
+        }
+        return 1;
     }
 
     @Override
-    public int update(Entity oldEnt, Entity newEnt) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int update(Entity newEnt) throws SQLException {
+        Connection con = DatabaseConnection.getInstance();
+        try {
+            String sql="UPDATE kompanija SET naziv=?,PIB=?,FKDelatnosti=? WHERE PKKompanije=?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, ((Kompanija)newEnt).getNaziv());
+            st.setLong(2, ((Kompanija)newEnt).getPIB());
+            st.setLong(3, ((Kompanija)newEnt).getDelatnost().getId());
+            st.setLong(4, this.getId());
+            st.executeUpdate();
+            st.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Podaci se ne mogu azurirati.");
+            return 0;
+        }
+        return 1;
     }
 
     @Override
-    public int delete(Entity e) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public int delete() throws SQLException {
+        Connection con = DatabaseConnection.getInstance();
+        try {
+            String sql="DELETE FROM kompanija WHERE PKKompanije=?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setLong(1, this.getId());
+            st.executeUpdate();
+            st.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Podaci se ne mogu obrisati.");
+            return 0;
+        }
+        return 1;
     }
 
-    @Override
-    public List<Entity> select() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
     
 }
