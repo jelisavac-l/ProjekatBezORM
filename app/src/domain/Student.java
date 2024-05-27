@@ -155,7 +155,7 @@ public class Student implements Entity{
     public int update(Entity newEnt) throws SQLException {
         Connection con = DatabaseConnection.getInstance();
         try {
-            String sql="UPDATE ugovor SET ime=?,prezime=?,brojIndeksa=?,email=?,telefon=?,stepenStudija=?,godinaStudija=?,FKModula=?,budzet=?,FKSmera=? WHERE PKStudenta=?";
+            String sql="UPDATE student SET ime=?,prezime=?,brojIndeksa=?,email=?,telefon=?,stepenStudija=?,godinaStudija=?,FKModula=?,budzet=?,FKSmera=? WHERE PKStudenta=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, this.getIme());
             st.setString(2, this.getPrezime());  
