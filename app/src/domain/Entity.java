@@ -8,5 +8,4 @@ public interface Entity {
     public int insert() throws SQLException;
     public int update(Entity newEnt) throws SQLException;
     public int delete() throws SQLException;
-    public List<Entity> select() throws SQLException;
 }
