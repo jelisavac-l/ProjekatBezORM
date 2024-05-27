@@ -59,4 +59,15 @@ public class LocalData {
         // Moze i exception ovde da se baci
         return false;
     }
+    
+    public static void flush()
+    {
+        delatnosti = null;
+        kompanije = null;
+        studenti= null;
+        ugovori = null;
+        prakse = null;
+        smerovi = null;
+        moduli = null;
+    }
 }

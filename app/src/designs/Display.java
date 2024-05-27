@@ -17,7 +17,9 @@ import domain.Ugovor;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import repos.LocalData;
 
@@ -72,6 +74,7 @@ public class Display extends javax.swing.JFrame {
         miImport = new javax.swing.JMenuItem();
         miExport = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Prakse");
@@ -83,7 +86,7 @@ public class Display extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Ime", "Prezime", "Br. indeksa", "Modul", "Godina", "Praksa", "Delatnost", "Datum od", "Datum do"
+                "BP", "Ime", "Prezime", "Br. indeksa", "Modul", "Praksa", "Delatnost", "Datum od", "Datum do"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -94,12 +97,24 @@ public class Display extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        // Jako je dobro sto sam se setio ovoga :D
+        TableColumnModel tcm = tblSvasta.getColumnModel();
+        tcm.getColumn(0).setPreferredWidth(10);
+        tcm.getColumn(3).setPreferredWidth(20);
+        tcm.getColumn(7).setPreferredWidth(30);
+        tcm.getColumn(8).setPreferredWidth(30);
+        tblSvasta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSvastaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblSvasta);
 
         pnlInfo.setBorder(javax.swing.BorderFactory.createTitledBorder("Informacije o Studentu i Kompaniji"));
 
         tfIme.setEditable(false);
         tfIme.setText("Ime studenta");
+        tfIme.setFocusable(false);
         tfIme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfImeActionPerformed(evt);
@@ -108,38 +123,49 @@ public class Display extends javax.swing.JFrame {
 
         tfPrezime.setEditable(false);
         tfPrezime.setText("Prezime studenta");
+        tfPrezime.setFocusable(false);
 
         tfNdx.setEditable(false);
         tfNdx.setText("Indeks");
+        tfNdx.setFocusable(false);
 
         tfEmail.setEditable(false);
         tfEmail.setText("E-mail adresa");
+        tfEmail.setFocusable(false);
 
         tfTelefon.setEditable(false);
         tfTelefon.setText("Broj telefona");
+        tfTelefon.setFocusable(false);
 
         tfGodinaStudija.setEditable(false);
         tfGodinaStudija.setText("Godina studija");
+        tfGodinaStudija.setFocusable(false);
 
         tfPIB.setEditable(false);
         tfPIB.setText("PIB");
+        tfPIB.setFocusable(false);
 
         tfDelatnost.setEditable(false);
         tfDelatnost.setText("Primarna delatnost");
+        tfDelatnost.setFocusable(false);
 
         tfStepenStudija.setEditable(false);
         tfStepenStudija.setText("Stepen");
+        tfStepenStudija.setFocusable(false);
 
         tfBudzet.setEditable(false);
         tfBudzet.setText("Način finansiranja");
+        tfBudzet.setFocusable(false);
 
         tfNazivKompanije.setEditable(false);
         tfNazivKompanije.setText("Naziv kompanije");
+        tfNazivKompanije.setFocusable(false);
 
         jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         tfDatumOd.setEditable(false);
         tfDatumOd.setText("Od");
+        tfDatumOd.setFocusable(false);
         tfDatumOd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfDatumOdActionPerformed(evt);
@@ -148,6 +174,7 @@ public class Display extends javax.swing.JFrame {
 
         tfDatumDo.setEditable(false);
         tfDatumDo.setText("Do");
+        tfDatumDo.setFocusable(false);
         tfDatumDo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfDatumDoActionPerformed(evt);
@@ -156,6 +183,7 @@ public class Display extends javax.swing.JFrame {
 
         taKomentar.setEditable(false);
         taKomentar.setText("Detalji");
+        taKomentar.setFocusable(false);
         taKomentar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 taKomentarActionPerformed(evt);
@@ -166,6 +194,7 @@ public class Display extends javax.swing.JFrame {
 
         tfSmer.setEditable(false);
         tfSmer.setText("Smer");
+        tfSmer.setFocusable(false);
         tfSmer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfSmerActionPerformed(evt);
@@ -174,6 +203,7 @@ public class Display extends javax.swing.JFrame {
 
         tfModul.setEditable(false);
         tfModul.setText("Modul");
+        tfModul.setFocusable(false);
 
         jButton5.setText("Otvori ugovor");
 
@@ -267,7 +297,7 @@ public class Display extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Kontrole"));
 
-        btnLoad.setText("LOAD (EXPERIMENTAL)");
+        btnLoad.setText("Učitaj podatke");
         btnLoad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLoadActionPerformed(evt);
@@ -304,6 +334,18 @@ public class Display extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setText("Settings");
+        jMenu3.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu3MenuSelected(evt);
+            }
+        });
+        jMenuBar1.add(jMenu3);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -313,7 +355,7 @@ public class Display extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1267, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1268, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -328,7 +370,7 @@ public class Display extends javax.swing.JFrame {
                     .addComponent(pnlInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -370,11 +412,12 @@ public class Display extends javax.swing.JFrame {
             
             // Koliko je opustajuce pisati ovo nakon sve fizikalije...
             Object[] row = new Object[]{
+                p.getId(),
                 p.getStudent().getIme(),
                 p.getStudent().getPrezime(),
                 p.getStudent().getIndeks(),
                 p.getStudent().getModul().getNaziv(),
-                p.getStudent().getGodinaStudija(),
+                
                 p.getKompanija().getNaziv(),
                 p.getKompanija().getDelatnost().getNazivDelatnosti(),
                 p.getDatumPocetka(),
@@ -389,6 +432,23 @@ public class Display extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnLoadActionPerformed
 
+    private void jMenu3MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu3MenuSelected
+        SettingsDialog sd = new SettingsDialog();
+        sd.setLocationRelativeTo(null);
+        sd.setVisible(true);
+        sd.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }//GEN-LAST:event_jMenu3MenuSelected
+
+    private void tblSvastaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSvastaMouseClicked
+        Praksa p;
+        Student s;
+        Kompanija k;
+        int row = tblSvasta.getSelectedRow();
+        
+        
+        
+    }//GEN-LAST:event_tblSvastaMouseClicked
+
     /**
      * Patnja velika je bila smisliti ovo a jos veca napisati.
      * @throws SQLException 
@@ -400,6 +460,8 @@ public class Display extends javax.swing.JFrame {
         Modul md;
         Student su;
         Praksa pr;
+        
+        LocalData.flush();  // Da ne ponavlja badava
         
         String sql = "SELECT\n" +
                 "s.PKStudenta,\n" +
@@ -483,47 +545,13 @@ public class Display extends javax.swing.JFrame {
         con.close();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Display.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Display.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Display.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Display.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Display().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton jButton5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
