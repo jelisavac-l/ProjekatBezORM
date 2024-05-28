@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import repos.LocalData;
+import util.AbelException;
 import util.Util;
 
 /**
@@ -63,11 +64,12 @@ public class Display extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         tfDatumOd = new javax.swing.JTextField();
         tfDatumDo = new javax.swing.JTextField();
-        taKomentar = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         tfSmer = new javax.swing.JTextField();
         tfModul = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        taKomentar = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         btnLoad = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -182,15 +184,6 @@ public class Display extends javax.swing.JFrame {
             }
         });
 
-        taKomentar.setEditable(false);
-        taKomentar.setText("Detalji");
-        taKomentar.setFocusable(false);
-        taKomentar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                taKomentarActionPerformed(evt);
-            }
-        });
-
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         tfSmer.setEditable(false);
@@ -208,6 +201,12 @@ public class Display extends javax.swing.JFrame {
 
         jButton5.setText("Otvori ugovor");
 
+        taKomentar.setEditable(false);
+        taKomentar.setColumns(20);
+        taKomentar.setRows(5);
+        taKomentar.setLineWrap(true);
+        jScrollPane2.setViewportView(taKomentar);
+
         javax.swing.GroupLayout pnlInfoLayout = new javax.swing.GroupLayout(pnlInfo);
         pnlInfo.setLayout(pnlInfoLayout);
         pnlInfoLayout.setHorizontalGroup(
@@ -216,7 +215,6 @@ public class Display extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(tfNdx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tfIme, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(pnlInfoLayout.createSequentialGroup()
                             .addComponent(tfStepenStudija, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,7 +223,8 @@ public class Display extends javax.swing.JFrame {
                         .addComponent(tfTelefon)
                         .addComponent(tfEmail)
                         .addComponent(tfPrezime)
-                        .addComponent(tfBudzet))
+                        .addComponent(tfBudzet)
+                        .addComponent(tfNdx, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlInfoLayout.createSequentialGroup()
                         .addComponent(tfSmer, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -241,12 +240,12 @@ public class Display extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(taKomentar, javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnlInfoLayout.createSequentialGroup()
                         .addComponent(tfDatumOd, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tfDatumDo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfDatumDo, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
                 .addGap(16, 16, 16))
         );
         pnlInfoLayout.setVerticalGroup(
@@ -258,41 +257,43 @@ public class Display extends javax.swing.JFrame {
                     .addGroup(pnlInfoLayout.createSequentialGroup()
                         .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlInfoLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(tfIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlInfoLayout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(tfIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfNdx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(tfGodinaStudija, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(tfStepenStudija, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(pnlInfoLayout.createSequentialGroup()
+                                        .addComponent(tfNazivKompanije, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfPIB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(tfDelatnost, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButton5)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfNdx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfTelefon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(tfBudzet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(tfGodinaStudija, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tfStepenStudija, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(tfModul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfSmer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(pnlInfoLayout.createSequentialGroup()
-                                .addComponent(tfNazivKompanije, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(tfDatumDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfDatumOd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfPIB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tfDelatnost, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfBudzet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfModul, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfSmer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlInfoLayout.createSequentialGroup()
-                        .addGroup(pnlInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tfDatumDo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfDatumOd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(taKomentar)))
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -390,10 +391,6 @@ public class Display extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfDatumDoActionPerformed
 
-    private void taKomentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_taKomentarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_taKomentarActionPerformed
-
     private void tfSmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSmerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfSmerActionPerformed
@@ -440,11 +437,58 @@ public class Display extends javax.swing.JFrame {
         sd.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }//GEN-LAST:event_jMenu3MenuSelected
 
+    // Preneti rmbacenje ove funkcije sa lokala na bazu!
     private void tblSvastaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSvastaMouseClicked
-        Praksa p;
-        Student s;
-        Kompanija k;
+        System.out.println("Klikno je na tabelu!");
+        Praksa praksa = null;
+        Student student = null;
+        Kompanija kompanija = null;
         int row = tblSvasta.getSelectedRow();
+        System.out.println("Kliknuo je na red: " + row);
+        
+        // Trazenje prakse na osnovu koje izvlacimo studenta i kompaniju
+        for(Praksa p : LocalData.prakse)
+        {
+            System.out.println("p.getID(): " + p.getId() + "\ttbl.gVA(): " + tblSvasta.getValueAt(row, 0));
+            praksa = p;
+            if(p.getId() == (Long)tblSvasta.getValueAt(row, 0))
+            {
+                
+                break;
+            }
+            
+            if(praksa == null)
+            {
+                // Nista jos nije selektovao
+                return;
+            }
+        }
+        
+        student = praksa.getStudent();
+        kompanija = praksa.getKompanija();
+        
+        // Udri sad redom
+        tfIme.setText(student.getIme());
+        tfPrezime.setText(student.getPrezime());
+        tfNdx.setText(student.getIndeks());
+        tfTelefon.setText(student.getTelefon());
+        tfEmail.setText(student.getEmail());
+        if(student.isBudzet()){
+            tfBudzet.setText("Na teret budžeta");
+        } else tfBudzet.setText("Samofinansiranje");
+        tfStepenStudija.setText("ss. " + Integer.toString(student.getStepenStudija()));
+        tfGodinaStudija.setText(student.getGodinaStudija() + ". godina");
+        if(student.getSmer().getId() == 1) {
+            tfSmer.setText("ISiT");
+        }
+        else tfSmer.setText("MiO");
+        tfModul.setText(student.getModul().getNaziv());
+        tfNazivKompanije.setText(kompanija.getNaziv());
+        tfDelatnost.setText(kompanija.getDelatnost().getNazivDelatnosti());
+        tfPIB.setText(Long.toString(kompanija.getPIB()));
+        tfDatumOd.setText(praksa.getDatumPocetka().toString());
+        tfDatumDo.setText(praksa.getDatumZavrsetka().toString());
+        taKomentar.setText(praksa.getKomentar());
         
         
         
@@ -556,12 +600,13 @@ public class Display extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JMenuItem miExport;
     private javax.swing.JMenuItem miImport;
     private javax.swing.JPanel pnlInfo;
-    private javax.swing.JTextField taKomentar;
+    private javax.swing.JTextArea taKomentar;
     private javax.swing.JTable tblSvasta;
     private javax.swing.JTextField tfBudzet;
     private javax.swing.JTextField tfDatumDo;
