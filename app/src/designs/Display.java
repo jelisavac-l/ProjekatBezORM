@@ -23,6 +23,7 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import repos.LocalData;
 import util.AbelException;
+import util.Util;
 
 /**
  *
@@ -423,7 +424,7 @@ public class Display extends javax.swing.JFrame {
             
             dtm.addRow(row);
         }
-        
+        Util.exportCSV();
         
         
         
