@@ -14,10 +14,13 @@ import domain.Praksa;
 import domain.Smer;
 import domain.Student;
 import domain.Ugovor;
+import java.io.File;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
@@ -328,7 +331,18 @@ public class Display extends javax.swing.JFrame {
         miImport.setText("Import...");
         jMenu1.add(miImport);
 
+        miExport.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         miExport.setText("Export...");
+        miExport.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                miExportMouseClicked(evt);
+            }
+        });
+        miExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miExportActionPerformed(evt);
+            }
+        });
         jMenu1.add(miExport);
 
         jMenuBar1.add(jMenu1);
@@ -397,17 +411,16 @@ public class Display extends javax.swing.JFrame {
 
     private void btnLoadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoadActionPerformed
         try {
-            getSvastaFromDB(); 
+            getSvastaFromDB();
         } catch (SQLException ex) {
             Logger.getLogger(Display.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         TableModel tm = tblSvasta.getModel();
         DefaultTableModel dtm = (DefaultTableModel) tm;
         dtm.setRowCount(0);
-        for(Praksa p : LocalData.prakse)
-        {
-            
+        for (Praksa p : LocalData.prakse) {
+
             // Koliko je opustajuce pisati ovo nakon sve fizikalije...
             Object[] row = new Object[]{
                 p.getId(),
@@ -415,19 +428,16 @@ public class Display extends javax.swing.JFrame {
                 p.getStudent().getPrezime(),
                 p.getStudent().getIndeks(),
                 p.getStudent().getModul().getNaziv(),
-                
                 p.getKompanija().getNaziv(),
                 p.getKompanija().getDelatnost().getNazivDelatnosti(),
                 p.getDatumPocetka(),
                 p.getDatumZavrsetka()
             };
-            
+
             dtm.addRow(row);
         }
-        Util.exportCSV();
-        
-        
-        
+
+
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void jMenu3MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu3MenuSelected
@@ -445,43 +455,43 @@ public class Display extends javax.swing.JFrame {
         Kompanija kompanija = null;
         int row = tblSvasta.getSelectedRow();
         System.out.println("Kliknuo je na red: " + row);
-        
+
         // Trazenje prakse na osnovu koje izvlacimo studenta i kompaniju
-        for(Praksa p : LocalData.prakse)
-        {
+        for (Praksa p : LocalData.prakse) {
             System.out.println("p.getID(): " + p.getId() + "\ttbl.gVA(): " + tblSvasta.getValueAt(row, 0));
             praksa = p;
-            if(p.getId() == (Long)tblSvasta.getValueAt(row, 0))
-            {
-                
+            if (p.getId() == (Long) tblSvasta.getValueAt(row, 0)) {
+
                 break;
             }
-            
-            if(praksa == null)
-            {
+
+            if (praksa == null) {
                 // Nista jos nije selektovao
                 return;
             }
         }
-        
+
         student = praksa.getStudent();
         kompanija = praksa.getKompanija();
-        
+
         // Udri sad redom
         tfIme.setText(student.getIme());
         tfPrezime.setText(student.getPrezime());
         tfNdx.setText(student.getIndeks());
         tfTelefon.setText(student.getTelefon());
         tfEmail.setText(student.getEmail());
-        if(student.isBudzet()){
+        if (student.isBudzet()) {
             tfBudzet.setText("Na teret budžeta");
-        } else tfBudzet.setText("Samofinansiranje");
+        } else {
+            tfBudzet.setText("Samofinansiranje");
+        }
         tfStepenStudija.setText("ss. " + Integer.toString(student.getStepenStudija()));
         tfGodinaStudija.setText(student.getGodinaStudija() + ". godina");
-        if(student.getSmer().getId() == 1) {
+        if (student.getSmer().getId() == 1) {
             tfSmer.setText("ISiT");
+        } else {
+            tfSmer.setText("MiO");
         }
-        else tfSmer.setText("MiO");
         tfModul.setText(student.getModul().getNaziv());
         tfNazivKompanije.setText(kompanija.getNaziv());
         tfDelatnost.setText(kompanija.getDelatnost().getNazivDelatnosti());
@@ -489,14 +499,27 @@ public class Display extends javax.swing.JFrame {
         tfDatumOd.setText(praksa.getDatumPocetka().toString());
         tfDatumDo.setText(praksa.getDatumZavrsetka().toString());
         taKomentar.setText(praksa.getKomentar());
-        
-        
-        
+
+
     }//GEN-LAST:event_tblSvastaMouseClicked
+
+    private void miExportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_miExportMouseClicked
+
+    }//GEN-LAST:event_miExportMouseClicked
+
+    private void miExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miExportActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            Util.exportCSV(file);
+            JOptionPane.showMessageDialog(null, "Export uspešan!", "Export", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_miExportActionPerformed
 
     /**
      * Patnja velika je bila smisliti ovo a jos veca napisati.
-     * @throws SQLException 
+     *
+     * @throws SQLException
      */
     private void getSvastaFromDB() throws SQLException {
         APR ap;
@@ -505,60 +528,59 @@ public class Display extends javax.swing.JFrame {
         Modul md;
         Student su;
         Praksa pr;
-        
+
         LocalData.flush();  // Da ne ponavlja badava
-        
-        String sql = "SELECT\n" +
-                "s.PKStudenta,\n" +
-                "s.ime,\n" +
-                "s.prezime,\n" +
-                "s.brojIndeksa,\n" +
-                "s.email,\n" +
-                "s.telefon, \n" +
-                "s.stepenStudija,\n" +
-                "s.godinaStudija,\n" +
-                "s.budzet,\n" +
-                "sm.PKSmera,\n" +
-                "sm.Naziv as 'nazivSmera',\n" +
-                "m.PKModula,\n" +
-                "m.naziv as 'nazivModula',\n" +
-                "k.PKKompanije,\n" +
-                "k.naziv as 'nazivKompanije',\n" +
-                "k.PIB,\n" +
-                "a.PKDelatnosti,\n" +
-                "a.sifraDelatnosti,\n" +
-                "a.naziv as 'nazivDelatnosti',\n" +
-                "p.PKPrakse,\n" +
-                "p.komentar,\n" +
-                "p.datumPocetka, \n" +
-                "p.datumZavrsetka\n" +
-                "FROM Praksa p\n" +
-                "JOIN Kompanija k ON p.FKKompanije = k.PKKompanije\n" +
-                "JOIN Student s ON p.FKStudenta = s.PKStudenta \n" +
-                "JOIN Smer sm ON s.FKSmera = sm.PKSmera \n" +
-                "JOIN Modul m  ON s.FKModula = m.PKModula\n" +
-                "JOIN APR a ON k.FKDelatnosti = a.PKDelatnosti ";
+
+        String sql = "SELECT\n"
+                + "s.PKStudenta,\n"
+                + "s.ime,\n"
+                + "s.prezime,\n"
+                + "s.brojIndeksa,\n"
+                + "s.email,\n"
+                + "s.telefon, \n"
+                + "s.stepenStudija,\n"
+                + "s.godinaStudija,\n"
+                + "s.budzet,\n"
+                + "sm.PKSmera,\n"
+                + "sm.Naziv as 'nazivSmera',\n"
+                + "m.PKModula,\n"
+                + "m.naziv as 'nazivModula',\n"
+                + "k.PKKompanije,\n"
+                + "k.naziv as 'nazivKompanije',\n"
+                + "k.PIB,\n"
+                + "a.PKDelatnosti,\n"
+                + "a.sifraDelatnosti,\n"
+                + "a.naziv as 'nazivDelatnosti',\n"
+                + "p.PKPrakse,\n"
+                + "p.komentar,\n"
+                + "p.datumPocetka, \n"
+                + "p.datumZavrsetka\n"
+                + "FROM Praksa p\n"
+                + "JOIN Kompanija k ON p.FKKompanije = k.PKKompanije\n"
+                + "JOIN Student s ON p.FKStudenta = s.PKStudenta \n"
+                + "JOIN Smer sm ON s.FKSmera = sm.PKSmera \n"
+                + "JOIN Modul m  ON s.FKModula = m.PKModula\n"
+                + "JOIN APR a ON k.FKDelatnosti = a.PKDelatnosti ";
         Connection con = DatabaseConnection.getInstance();
         Statement st = con.createStatement();
         ResultSet rs = st.executeQuery(sql);
-        while(rs.next())
-        {
+        while (rs.next()) {
             ap = new APR(rs.getLong("PKDelatnosti"),
                     rs.getString("nazivDelatnosti"),
                     rs.getInt("sifraDelatnosti"));
-            
+
             ko = new Kompanija(rs.getLong("PKKompanije"),
                     rs.getString("nazivKompanije"),
                     rs.getLong("PIB"),
                     ap);
-            
+
             sm = new Smer(rs.getLong("PKSmera"),
                     rs.getString("nazivSmera"));
-            
+
             md = new Modul(rs.getLong("PKModula"),
                     rs.getString("nazivModula"),
                     sm);
-            
+
             su = new Student(rs.getLong("PKStudenta"),
                     rs.getString("ime"),
                     rs.getString("prezime"),
@@ -570,14 +592,14 @@ public class Display extends javax.swing.JFrame {
                     rs.getBoolean("budzet"),
                     sm,
                     md);
-            
+
             pr = new Praksa(rs.getLong("PKPrakse"),
                     ko,
                     su,
                     rs.getDate("datumPocetka"),
                     rs.getDate("datumZavrsetka"),
                     rs.getString("komentar"));
-            
+
             LocalData.add(ap);
             LocalData.add(ko);
             LocalData.add(sm);

@@ -7,6 +7,7 @@ package util;
 import domain.Kompanija;
 import domain.Praksa;
 import domain.Student;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -19,9 +20,9 @@ import repos.LocalData;
  */
 public class Util {
     
-    public static void exportCSV(){
+    public static void exportCSV(File file){
         try {
-            FileWriter writer = new FileWriter("fajl.csv");
+            FileWriter writer = new FileWriter(file);
             for(int i=0;i<LocalData.studenti.size();i++){
                 String ime = ((Student)LocalData.studenti.get(i)).getIme();
                 String prezime = ((Student)LocalData.studenti.get(i)).getPrezime();
