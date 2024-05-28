@@ -42,9 +42,9 @@ public class Util {
                 String modul = ((Student)LocalData.studenti.get(i)).getModul().getNaziv();
                 String kompanije = ((Kompanija)LocalData.kompanije.get(i)).getNaziv();
                 String pib = ((Kompanija)LocalData.kompanije.get(i)).getPIB().toString();
-                String delatnost = ((Kompanija)LocalData.kompanije.get(i)).getDelatnost().toString();
+                String delatnost = ((Kompanija)LocalData.kompanije.get(i)).getDelatnost().getNazivDelatnosti();
                 writer.append(ime+","+prezime+","+indeks+","+email+","+broj+","+stepenStudija+","+godinaStudija
-                +","+nacinFinansiranja+","+smer+","+modul+","+kompanije+","+pib+","+delatnost);
+                +","+nacinFinansiranja+","+smer+","+modul+","+kompanije+","+pib+","+delatnost+"\n");
             }
             writer.close();
         } catch (IOException ex) {
