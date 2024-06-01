@@ -328,6 +328,7 @@ public class Display extends javax.swing.JFrame {
 
         jMenu1.setText("File");
 
+        miImport.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         miImport.setText("Import...");
         jMenu1.add(miImport);
 
