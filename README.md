@@ -2,16 +2,19 @@
 # Prakse
 Sistem za praćenje praksi studenata FON-a (JDBC verzija)
 
-
-
 ## Autori
 
-[![MIT License](https://img.shields.io/badge/dva_bana-odabrana-blue)](https://choosealicense.com/licenses/mit/)
+[![MIT License](https://img.shields.io/badge/dva_bana-odabrana-blue)]()
 
-- [@jelisavac-l](https://www.github.com/jelisavac-l)
-- [@marko582](https://www.github.com/marko582)
+- [Jelisavac Luka @jelisavac-l](https://www.github.com/jelisavac-l)
+- [Mijailović Marko @marko582](https://www.github.com/marko582)
 
 
-
-![Logo](https://images7.memedroid.com/images/UPLOADED655/5ede767913de3.jpeg)
-
+## TODOs
+- Dodati atribut `školskaGodina` u relaciju `praksa`
+- Omogućiti unos studenata
+- Omogućiti unos praksi
+- Kreirati servise
+- Napraviti filter za pretragu
+- Štampanje izveštaja o praksi
+- Omogućiti importovanje praksi iz `.csv` fajla
