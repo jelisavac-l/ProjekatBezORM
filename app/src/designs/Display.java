@@ -18,6 +18,8 @@ import java.io.File;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -75,6 +77,7 @@ public class Display extends javax.swing.JFrame {
         taKomentar = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         btnLoad = new javax.swing.JButton();
+        btnDodajStudenta = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         miImport = new javax.swing.JMenuItem();
@@ -203,10 +206,12 @@ public class Display extends javax.swing.JFrame {
         tfModul.setFocusable(false);
 
         jButton5.setText("Otvori ugovor");
+        jButton5.setEnabled(false);
 
         taKomentar.setEditable(false);
         taKomentar.setColumns(20);
         taKomentar.setRows(5);
+        taKomentar.setFocusable(false);
         taKomentar.setLineWrap(true);
         jScrollPane2.setViewportView(taKomentar);
 
@@ -309,13 +314,20 @@ public class Display extends javax.swing.JFrame {
             }
         });
 
+        btnDodajStudenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/assets/smile-plus.png"))); // NOI18N
+        btnDodajStudenta.setToolTipText("");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnLoad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnLoad, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnDodajStudenta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -323,11 +335,14 @@ public class Display extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnLoad, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDodajStudenta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
 
+        miImport.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         miImport.setText("Import...");
         jMenu1.add(miImport);
 
@@ -358,6 +373,16 @@ public class Display extends javax.swing.JFrame {
             }
             public void menuSelected(javax.swing.event.MenuEvent evt) {
                 jMenu3MenuSelected(evt);
+            }
+        });
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu3ActionPerformed(evt);
             }
         });
         jMenuBar1.add(jMenu3);
@@ -441,10 +466,7 @@ public class Display extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoadActionPerformed
 
     private void jMenu3MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu3MenuSelected
-        SettingsDialog sd = new SettingsDialog();
-        sd.setLocationRelativeTo(null);
-        sd.setVisible(true);
-        sd.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
     }//GEN-LAST:event_jMenu3MenuSelected
 
     // Preneti rmbacenje ove funkcije sa lokala na bazu!
@@ -515,6 +537,16 @@ public class Display extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Export uspešan!", "Export", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_miExportActionPerformed
+
+    private void jMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu3ActionPerformed
+
+    }//GEN-LAST:event_jMenu3ActionPerformed
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        SettingsDialog sd = new SettingsDialog();
+        sd.setLocationRelativeTo(null);
+        sd.setVisible(true);
+        sd.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);    }//GEN-LAST:event_jMenu3MouseClicked
 
     /**
      * Patnja velika je bila smisliti ovo a jos veca napisati.
@@ -614,6 +646,7 @@ public class Display extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDodajStudenta;
     private javax.swing.JButton btnLoad;
     private javax.swing.JButton jButton5;
     private javax.swing.JMenu jMenu1;
