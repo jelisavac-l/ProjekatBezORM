@@ -43,14 +43,14 @@ public class App {
         } catch (AbelException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
-//        Display centrirana = new Display();
-//        centrirana.setLocationRelativeTo(null);
-//        centrirana.setVisible(true);
+        Display centrirana = new Display();
+        centrirana.setLocationRelativeTo(null);
+        centrirana.setVisible(true);
 
       
-        UnosStudenta centrirana2 = new UnosStudenta();
-        centrirana2.setLocationRelativeTo(null);
-        centrirana2.setVisible(true);
+//        UnosStudenta centrirana2 = new UnosStudenta();
+//        centrirana2.setLocationRelativeTo(null);
+//        centrirana2.setVisible(true);
             
     }
     
