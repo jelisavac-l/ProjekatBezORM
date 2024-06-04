@@ -50,5 +50,8 @@ public class Util {
         } catch (IOException ex) {
             System.out.println("Ne kreira fajl");
         }
+        catch(NullPointerException e){
+            System.out.println("Lista prazna!");
+        }
     }
 }
