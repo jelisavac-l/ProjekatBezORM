@@ -167,7 +167,6 @@ public class UnosStudenta extends javax.swing.JFrame {
     private void godinaStudijaComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_godinaStudijaComboBoxActionPerformed
         // TODO add your handling code here:
         if(!godinaStudijaComboBox.getSelectedItem().equals("1")){
-            System.out.println("radi");
             modulComboBox.setEnabled(true);
         }
         else{
@@ -187,7 +186,8 @@ public class UnosStudenta extends javax.swing.JFrame {
                 while(rs.next()){
                     String naziv = rs.getString("Naziv");
                     modulComboBox.addItem(naziv);
-                }   } catch (SQLException ex) {
+                }
+            } catch (SQLException ex) {
                 Logger.getLogger(UnosStudenta.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -200,7 +200,8 @@ public class UnosStudenta extends javax.swing.JFrame {
                 while(rs.next()){
                     String naziv = rs.getString("Naziv");
                     modulComboBox.addItem(naziv);
-                }   } catch (SQLException ex) {
+                }
+            } catch (SQLException ex) {
                 Logger.getLogger(UnosStudenta.class.getName()).log(Level.SEVERE, null, ex);
             } 
         }
@@ -246,6 +247,7 @@ public class UnosStudenta extends javax.swing.JFrame {
                 st3.close();
                 con.close();
                 this.setVisible(false);
+                dispose();
                 } catch (SQLException ex) {
                 Logger.getLogger(UnosStudenta.class.getName()).log(Level.SEVERE, null, ex);
             } 
